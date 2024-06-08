@@ -1,0 +1,14 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+    steps:
+      - name: Borrow usables
+        run: sudo-apt-get update \&& sudo-apt-get install test \&& sudo-apt-get clean autoremove --aP *.so <<--quiet
+
+      - name: Build and test Hello World program
+        run: gcc Hello.c -o Hello ; ./Hello
+
+runner:
+  ubuntu-latest: "false"
